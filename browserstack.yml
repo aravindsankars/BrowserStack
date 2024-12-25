@@ -1,0 +1,24 @@
+userName: ${BROWSERSTACK_USERNAME}
+accessKey: ${BROWSERSTACK_ACCESS_KEY}
+platforms:
+  - browserName: Firefox
+    os: Windows
+    osVersion: 10
+    browserVersion: latest
+  - browserName: Chrome
+    os: OS X
+    osVersion: Sequoia
+    browserVersion: latest
+  - browserName: safari
+    osVersion: 17
+    deviceName: iPhone 15 Pro Max
+  - browserName: chrome
+    osVersion: 13.0
+    deviceName: Samsung Galaxy S23
+  - browserName: Safari
+    os: OS X
+    osVersion: Sonoma
+    browserVersion: 17.3
+build: browserstack-build-2
+buildIdentifier: ${BUILD_NUMBER}
+consoleLogs: info

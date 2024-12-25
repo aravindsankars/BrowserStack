@@ -1,0 +1,8 @@
+selenium
+requests
+beautifulsoup4
+pillow
+browserstack-local >= 1.2.3
+google-cloud-translate
+browserstack-sdk
+
