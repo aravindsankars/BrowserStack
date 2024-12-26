@@ -59,12 +59,12 @@ The project requires two YAML configuration files:
 ### 5. Run the Local Scraper
 Execute the local scraper to fetch articles, translate titles, and analyze headers:
 
-**python src/main.py**
+**python3 src/main_local.py**
 
 ### 6. Run Cross-Browser Testing with BrowserStack
 Run the solution on BrowserStack with parallel threads:
 
-**python src_bs/main.py**
+**browserstack-sdk python3 src/main_browserstack.py**
 
 ### Expected Output
 #### Local Execution:
