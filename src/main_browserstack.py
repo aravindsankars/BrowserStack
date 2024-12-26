@@ -1,7 +1,7 @@
 from config import Config
-from translator import Translator
-from scraper import Scraper
-from utilities import Utilities
+from translate import Translator
+from scraper_browserstack import Scraper
+from utilities import get_word_counts
 from concurrent.futures import ThreadPoolExecutor
 import os
 from urllib.parse import urljoin
@@ -38,7 +38,7 @@ def run_test(config, translator, scraper, capabilities):
 
         # Word count analysis
         if translated_titles:
-            word_counts = Utilities.get_word_counts(translated_titles)
+            word_counts = get_word_counts(translated_titles)
             repeated_words = {word: count for word, count in word_counts.items() if count > 2}
             if repeated_words:
                 print("Repeated words:", repeated_words)
@@ -52,7 +52,7 @@ def run_test(config, translator, scraper, capabilities):
         driver.quit()
 
 if __name__ == "__main__":
-    config = Config()
+    config = Config("secrets.yml","browserstack.yml")
     translator = Translator(*config.get_rapidapi_credentials())
     scraper = Scraper(*config.get_browserstack_credentials(), config.get_article_images_path())
 

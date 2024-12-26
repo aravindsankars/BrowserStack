@@ -1,16 +1,17 @@
 from config import Config
 from translate import Translator
 from scraper_local import Scraper
-from utilities import Utilities
+from utilities import get_word_counts
 import os
 
 def main():
     # Load configuration
-    config = Config()
+    
+    config = Config("secrets.yml")
     article_images_path = config.get_article_images_path()
 
     # Initialize translator and scraper
-    translator = Translator(config.rapid_api_key, config.rapid_api_url)
+    translator = Translator(*config.get_rapidapi_credentials())
     scraper = Scraper(driver_path="drivers/chromedriver", base_url="https://elpais.com")
 
     try:
@@ -43,7 +44,7 @@ def main():
 
         # Analyze word counts only for non-empty translated titles
         if translated_titles:
-            word_counts = Utilities.get_word_counts(translated_titles)
+            word_counts = get_word_counts(translated_titles)
             repeated_words = {word: count for word, count in word_counts.items() if count > 2}
             if repeated_words:
                 print("Repeated words:", repeated_words)

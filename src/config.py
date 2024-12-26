@@ -2,21 +2,27 @@ import os
 import yaml
 
 class Config:
-    def __init__(self, secrets_path="secrets.yml"):
+    def __init__(self, secrets_path, bs_file=None):
         with open(secrets_path, "r") as file:
-            self.config = yaml.safe_load(file)
+            self.secrets = yaml.safe_load(file)
 
-    @property
-    def rapid_api_key(self):
-        return self.config['secrets']['rapid_api_key']
+        if bs_file:
+            with open(bs_file, "r") as file:
+                self.bs_config = yaml.safe_load(file)
 
-    @property
-    def rapid_api_url(self):
-        return self.config['secrets']['rapid_api_url']
+        # Define paths
+        self.parent_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+        self.article_images_path = os.path.join(self.parent_directory, 'article_images')
+        os.makedirs(self.article_images_path, exist_ok=True)
 
-    @staticmethod
-    def get_article_images_path():
-        parent_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-        article_images = os.path.join(parent_directory, 'article_images')
-        os.makedirs(article_images, exist_ok=True)
-        return article_images
+    def get_browserstack_credentials(self):
+        return self.secrets['secrets']['browserstack_username'], self.secrets['secrets']['browserstack_access_key']
+
+    def get_rapidapi_credentials(self):
+        return self.secrets['secrets']['rapid_api_key'], self.secrets['secrets']['rapid_api_url']
+
+    def get_capabilities(self):
+        return self.bs_config['platforms']
+
+    def get_article_images_path(self):
+        return self.article_images_path
