@@ -49,24 +49,18 @@ Install the required Python libraries.
 The project requires two YAML configuration files:
 
 *secrets.yml: Store sensitive credentials like API keys.*
-
-secrets:
-  rapid_api_key: "your-rapid-api-key"
-  rapid_api_url: "https://rapid-translate-multi-traduction.p.rapidapi.com/t"
-  browserstack_username: "your-browserstack-username"
-  browserstack_access_key: "your-browserstack-access-key"
   
 *browserstack.yml: Define BrowserStack testing configurations.*
 
 ### 5. Run the Local Scraper
 Execute the local scraper to fetch articles, translate titles, and analyze headers:
 
-python src/main.py
+**python src/main.py**
 
 ### 6. Run Cross-Browser Testing with BrowserStack
 Run the solution on BrowserStack with parallel threads:
 
-python src_bs/main.py
+**python src_bs/main.py**
 
 ### Expected Output
 #### Local Execution:
