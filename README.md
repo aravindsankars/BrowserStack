@@ -45,6 +45,10 @@ Create and activate a Python virtual environment.
 ### 3. Install Dependencies
 Install the required Python libraries.
 
+### 4. Install ChromeDriver
+- Create a drivers folder.
+- Install the Selenium Chromedriver and put it in drivers folder.
+
 ### 4. Configuration Files
 The project requires two YAML configuration files:
 
